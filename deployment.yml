@@ -1,21 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zeo
+  name: plone
   labels:
-    app: zeo
+    app: plone
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: zeo
+      app: plone
   template:
     metadata:
       labels:
-        app: zeo
+        app: plone
     spec:
       containers:
       - name: zeo
         image: zopyx/plone-zeo
         ports:
         - containerPort: 20100
+      - name: client
+        image: zopyx/plone-client
+        ports:
+        - containerPort: 8080
